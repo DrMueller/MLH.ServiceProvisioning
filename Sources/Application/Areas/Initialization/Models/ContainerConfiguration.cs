@@ -8,9 +8,9 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models
 {
     public class ContainerConfiguration
     {
-        private readonly bool _logInitialization;
         public string AssemblyPrefix { get; }
         public bool InitializeAutoMapper { get; }
+        public bool LogInitialization { get; }
         public Assembly RootAssembly { get; }
 
         public ContainerConfiguration(
@@ -19,13 +19,13 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models
             bool initializeAutoMapper = false,
             bool logInitialization = false)
         {
-            _logInitialization = logInitialization;
             Guard.ObjectNotNull(() => rootAssembly);
             Guard.ObjectNotNull(() => assemblyPrefix);
 
             RootAssembly = rootAssembly;
             AssemblyPrefix = assemblyPrefix;
             InitializeAutoMapper = initializeAutoMapper;
+            LogInitialization = logInitialization;
         }
 
         public static ContainerConfiguration CreateFromAssembly(
@@ -59,14 +59,6 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models
             };
 
             return relevantPrefixes.Any(relevantPrefix => assemblyNameSpace.StartsWith(relevantPrefix, StringComparison.OrdinalIgnoreCase));
-        }
-
-        internal void WriteDebug(string message)
-        {
-            if (_logInitialization)
-            {
-                Debug.WriteLine(message);
-            }
         }
     }
 }

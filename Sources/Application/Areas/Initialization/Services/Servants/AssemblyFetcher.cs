@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -73,9 +74,14 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services.Servants
 
         private static void LogAssemblies(ContainerConfiguration containerConfig, string source, IEnumerable<Assembly> assemblies)
         {
+            if (!containerConfig.LogInitialization)
+            {
+                return;
+            }
+
             var assemblyNames = assemblies.Select(assembly => assembly.FullName);
             var assemblyList = string.Join(Environment.NewLine, assemblyNames);
-            containerConfig.WriteDebug(source + ": " + assemblyList);
+            Debug.WriteLine(source + ": " + Environment.NewLine + assemblyList);
         }
     }
 }

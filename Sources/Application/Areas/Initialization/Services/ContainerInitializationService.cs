@@ -1,4 +1,5 @@
-﻿using Mmu.Mlh.LanguageExtensions.Areas.Collections;
+﻿using System.Diagnostics;
+using Mmu.Mlh.LanguageExtensions.Areas.Collections;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services.Servants;
 using Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services;
@@ -28,6 +29,12 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services
                         AutoMapperInitializer.InitializeAutoMapper(cfgExpression, assemblies);
                     }
                 });
+            
+            if (containerConfig.LogInitialization)
+            {
+                Debug.WriteLine(result.WhatDidIScan());
+                Debug.WriteLine(result.WhatDoIHave());
+            }
 
             var serviceLocator = result.GetInstance<IServiceLocator>();
             ServiceLocatorSingleton.Initialize(serviceLocator);
