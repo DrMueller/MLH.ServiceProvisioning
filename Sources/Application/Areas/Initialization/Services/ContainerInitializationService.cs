@@ -29,7 +29,7 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services
                         AutoMapperInitializer.InitializeAutoMapper(cfgExpression, assemblies);
                     }
                 });
-            
+
             if (containerConfig.LogInitialization)
             {
                 Debug.WriteLine(result.WhatDidIScan());
