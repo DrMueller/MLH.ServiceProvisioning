@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults;
 using StructureMap;
 
 namespace Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services.Implementation
@@ -30,6 +31,18 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services.Implementation
         {
             var result = _container.GetInstance(pluginType);
             return result;
+        }
+
+        public FunctionResult<T> TryToGetService<T>()
+        {
+            var instance = _container.TryGetInstance<T>();
+
+            if (instance == null)
+            {
+                return FunctionResult.CreateFailure<T>();
+            }
+
+            return FunctionResult.CreateSuccess(instance);
         }
     }
 }
