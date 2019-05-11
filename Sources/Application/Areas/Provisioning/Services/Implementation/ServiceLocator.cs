@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
 using StructureMap;
 
 namespace Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services.Implementation
@@ -33,16 +33,10 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services.Implementation
             return result;
         }
 
-        public FunctionResult<T> TryToGetService<T>()
+        public Maybe<T> SearchService<T>()
         {
             var instance = _container.TryGetInstance<T>();
-
-            if (instance == null)
-            {
-                return FunctionResult.CreateFailure<T>();
-            }
-
-            return FunctionResult.CreateSuccess(instance);
+            return Maybe.CreateFromNullable(instance);
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Mmu.Mlh.LanguageExtensions.Areas.Types.FunctionsResults;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
 
 namespace Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services
 {
@@ -12,6 +12,6 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services
 
         object GetService(Type pluginType);
 
-        FunctionResult<T> TryToGetService<T>();
+        Maybe<T> SearchService<T>();
     }
 }
