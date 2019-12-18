@@ -12,7 +12,7 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services.Servants
     {
         internal static IReadOnlyCollection<Assembly> GetApplicationRelevantAssemblies(ContainerConfiguration containerConfig)
         {
-            var assembliesByReferences = new List<Assembly>();
+            var assembliesByReferences = new List<Assembly> { containerConfig.RootAssembly };
 
             AppendAssembliesByAssemblyReferences(
                 containerConfig,
