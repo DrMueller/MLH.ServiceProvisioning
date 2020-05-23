@@ -13,14 +13,13 @@ namespace Mmu.Mlh.ServiceProvisioning.UnitTests.TestingAreas.Areas.Initializatio
             var rootAssembly = typeof(ContainerConfigurationUnitTests).Assembly;
             const string AssemblyPrefix = "Mmu.Mlh";
             const bool InitializeAutoMapper = true;
-            const bool LogInitialization = true;
 
             ConstructorTestBuilderFactory.Constructing<ContainerConfiguration>()
                 .UsingDefaultConstructor()
                 .WithArgumentValues(null, null).Fails()
                 .WithArgumentValues(rootAssembly, null).Fails()
                 .WithArgumentValues(null, AssemblyPrefix).Fails()
-                .WithArgumentValues(rootAssembly, AssemblyPrefix, InitializeAutoMapper, LogInitialization)
+                .WithArgumentValues(rootAssembly, AssemblyPrefix, InitializeAutoMapper)
                 .Maps()
                 .ToProperty(f => f.AssemblyPrefix).WithValue(AssemblyPrefix)
                 .ToProperty(f => f.InitializeAutoMapper).WithValue(InitializeAutoMapper)
