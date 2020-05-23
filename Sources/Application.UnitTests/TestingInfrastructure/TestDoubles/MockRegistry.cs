@@ -1,8 +1,8 @@
-﻿using StructureMap;
+﻿using Lamar;
 
 namespace Mmu.Mlh.ServiceProvisioning.UnitTests.TestingInfrastructure.TestDoubles
 {
-    public class MockRegistry : Registry
+    public class MockRegistry : ServiceRegistry
     {
         public static bool WasCalled { get; private set; }
 

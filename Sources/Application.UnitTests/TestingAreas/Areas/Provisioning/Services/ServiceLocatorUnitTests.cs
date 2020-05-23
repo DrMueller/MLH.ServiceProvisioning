@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
+using Lamar;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation;
 using Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services.Implementation;
 using Mmu.Mlh.ServiceProvisioning.UnitTests.TestingAreas.Areas.Provisioning.Services.TestingServices;
 using Moq;
 using NUnit.Framework;
-using StructureMap;
 
 namespace Mmu.Mlh.ServiceProvisioning.UnitTests.TestingAreas.Areas.Provisioning.Services
 {
     [TestFixture]
     public class ServiceLocatorUnitTests
     {
-        private ServiceLocator _sut;
-
         private Mock<IContainer> _containerMock;
+        private ServiceLocator _sut;
 
         [SetUp]
         public void Align()
@@ -70,10 +69,11 @@ namespace Mmu.Mlh.ServiceProvisioning.UnitTests.TestingAreas.Areas.Provisioning.
             // Assert
             Assert.IsInstanceOf<Some<ITestService>>(actualServiceMaybe);
 
-            actualServiceMaybe.Evaluate(actualService =>
-            {
-                Assert.AreEqual(testService, actualService);
-            });
+            actualServiceMaybe.Evaluate(
+                actualService =>
+                {
+                    Assert.AreEqual(testService, actualService);
+                });
         }
 
         [Test]

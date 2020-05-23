@@ -1,23 +1,22 @@
 ﻿using System.Diagnostics;
+using Lamar;
 using Mmu.Mlh.LanguageExtensions.Areas.Collections;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services.Servants;
 using Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services;
-using StructureMap;
 
 namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services
 {
     public static class ContainerInitializationService
     {
-        public static Container CreateInitializedContainer(ContainerConfiguration containerConfig)
+        public static IContainer CreateInitializedContainer(ContainerConfiguration containerConfig)
         {
-            var result = new Container();
             var assemblies = AssemblyFetcher.GetApplicationRelevantAssemblies(containerConfig);
 
-            result.Configure(
-                cfgExpression =>
+            var result = new Container(
+                registry =>
                 {
-                    cfgExpression.Scan(
+                    registry.Scan(
                         scanner =>
                         {
                             assemblies.ForEach(scanner.Assembly);
@@ -26,7 +25,7 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services
 
                     if (containerConfig.InitializeAutoMapper)
                     {
-                        AutoMapperInitializer.InitializeAutoMapper(cfgExpression, assemblies);
+                        AutoMapperInitializer.InitializeAutoMapper(registry, assemblies);
                     }
                 });
 

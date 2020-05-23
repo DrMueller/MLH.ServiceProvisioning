@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Reflection;
 using AutoMapper;
-using StructureMap;
+using Lamar;
 
 namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services.Servants
 {
     internal static class AutoMapperInitializer
     {
-        internal static void InitializeAutoMapper(IProfileRegistry config, IEnumerable<Assembly> assemblies)
+        internal static void InitializeAutoMapper(ServiceRegistry registry, IEnumerable<Assembly> assemblies)
         {
             var profileTypes = assemblies.SelectMany(f => f.GetTypes().Where(t => typeof(Profile).IsAssignableFrom(t))).ToList();
 
@@ -22,7 +22,7 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services.Servants
                 });
 
             var mapper = mapperConfiguration.CreateMapper();
-            config.For<IMapper>().Use(mapper);
+            registry.For<IMapper>().Use(mapper);
         }
     }
 }

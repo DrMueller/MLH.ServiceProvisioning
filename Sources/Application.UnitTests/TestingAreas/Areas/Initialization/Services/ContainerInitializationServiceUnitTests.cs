@@ -9,21 +9,6 @@ namespace Mmu.Mlh.ServiceProvisioning.UnitTests.TestingAreas.Areas.Initializatio
     public class ContainerInitializationServiceUnitTests
     {
         [Test]
-        public void InitializingContainer_CreatesContainer()
-        {
-            // Arrange
-            var containerConfig = new ContainerConfiguration(
-                typeof(ContainerInitializationServiceUnitTests).Assembly,
-                "MMu");
-
-            // Act
-            var actualContainer = ContainerInitializationService.CreateInitializedContainer(containerConfig);
-
-            // Assert
-            Assert.That(actualContainer, Is.Not.Null);
-        }
-
-        [Test]
         public void InitializingContainer_CallsRegistries()
         {
             // Arrange
@@ -36,6 +21,21 @@ namespace Mmu.Mlh.ServiceProvisioning.UnitTests.TestingAreas.Areas.Initializatio
 
             // Assert
             Assert.That(MockRegistry.WasCalled, Is.True);
+        }
+
+        [Test]
+        public void InitializingContainer_CreatesContainer()
+        {
+            // Arrange
+            var containerConfig = new ContainerConfiguration(
+                typeof(ContainerInitializationServiceUnitTests).Assembly,
+                "MMu");
+
+            // Act
+            var actualContainer = ContainerInitializationService.CreateInitializedContainer(containerConfig);
+
+            // Assert
+            Assert.That(actualContainer, Is.Not.Null);
         }
     }
 }

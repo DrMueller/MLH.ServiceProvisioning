@@ -1,10 +1,10 @@
-﻿using Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services;
+﻿using Lamar;
+using Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services;
 using Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services.Implementation;
-using StructureMap;
 
 namespace Mmu.Mlh.ServiceProvisioning.Infrastructure.DependencyInjection
 {
-    public class ServiceProvisioningRegistry : Registry
+    public class ServiceProvisioningRegistry : ServiceRegistry
     {
         public ServiceProvisioningRegistry()
         {
