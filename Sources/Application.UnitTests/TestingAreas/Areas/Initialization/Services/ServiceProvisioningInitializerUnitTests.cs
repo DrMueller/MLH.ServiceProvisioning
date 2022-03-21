@@ -4,7 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services;
 using Mmu.Mlh.ServiceProvisioning.UnitTests.TestingInfrastructure.Services;
-using Mmu.Mlh.ServiceProvisioning.UnitTests.TestingInfrastructure.Services.Implementation;
 using Mmu.Mlh.ServiceProvisioning.UnitTests.TestingInfrastructure.TestDoubles;
 using Moq;
 using NUnit.Framework;
