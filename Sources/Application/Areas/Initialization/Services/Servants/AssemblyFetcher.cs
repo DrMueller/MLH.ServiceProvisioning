@@ -18,13 +18,13 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services.Servants
                 containerConfig,
                 containerConfig.RootAssembly,
                 assembliesByReferences);
-            LogAssemblies(containerConfig, "Assemblies by References", assembliesByReferences);
+            LogAssemblies("Assemblies by References", assembliesByReferences);
 
             var assembliesInRootPath = new List<Assembly>();
             AppendAssembliesInBaseDirectory(
                 containerConfig,
                 assembliesInRootPath);
-            LogAssemblies(containerConfig, "Assemblies in Root Path", assembliesInRootPath);
+            LogAssemblies("Assemblies in Root Path", assembliesInRootPath);
 
             var result = assembliesByReferences.Union(assembliesInRootPath).ToList();
             return result;
@@ -54,7 +54,7 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services.Servants
             };
 
             var codeDirectory = Path.GetDirectoryName(containerConfig.RootAssembly.Location);
-            var relevantAssemblyFileInfos = Directory.GetFiles(codeDirectory)
+            var relevantAssemblyFileInfos = Directory.GetFiles(codeDirectory!)
                 .Select(str => new FileInfo(str))
                 .Where(fi => assemblyExtensions.Contains(fi.Extension.ToUpperInvariant()))
                 .Where(fi => containerConfig.CheckIfIsRelevant(fi.Name));
@@ -72,7 +72,7 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services.Servants
             }
         }
 
-        private static void LogAssemblies(ContainerConfiguration containerConfig, string source, IEnumerable<Assembly> assemblies)
+        private static void LogAssemblies(string source, IEnumerable<Assembly> assemblies)
         {
             var assemblyNames = assemblies.Select(assembly => assembly.FullName);
             var assemblyList = string.Join(Environment.NewLine, assemblyNames);
