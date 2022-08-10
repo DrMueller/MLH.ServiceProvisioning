@@ -54,7 +54,7 @@ namespace Mmu.Mlh.ServiceProvisioning.UnitTests.TestingAreas.Areas.Initializatio
             var mockIndividualService = Mock.Of<IIndividualService>();
             var serviceDescriptors = new List<ServiceDescriptor>
             {
-                new ServiceDescriptor(typeof(IIndividualService), mockIndividualService)
+                new(typeof(IIndividualService), mockIndividualService)
             };
 
             // Act

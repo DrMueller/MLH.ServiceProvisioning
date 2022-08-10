@@ -19,9 +19,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="8.0.0" />
-    <PackageReference Include="Lamar" Version="3.0.5" />
-    <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="2.3.20" />
+    <PackageReference Include="AutoMapper" Version="11.0.1" />
+    <PackageReference Include="Lamar" Version="8.0.1" />
+    <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="2.4.13" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using Lamar;
+using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes;
 using Mmu.Mlh.LanguageExtensions.Areas.Types.Maybes.Implementation;
 using Mmu.Mlh.ServiceProvisioning.Areas.Provisioning.Services.Implementation;
 using Mmu.Mlh.ServiceProvisioning.UnitTests.TestingAreas.Areas.Provisioning.Services.TestingServices;
@@ -69,11 +70,8 @@ namespace Mmu.Mlh.ServiceProvisioning.UnitTests.TestingAreas.Areas.Provisioning.
             // Assert
             Assert.IsInstanceOf<Some<ITestService>>(actualServiceMaybe);
 
-            actualServiceMaybe.Evaluate(
-                actualService =>
-                {
-                    Assert.AreEqual(testService, actualService);
-                });
+            var actualService = actualServiceMaybe.Reduce(() => throw new System.Exception("Not possible"));
+            Assert.AreEqual(testService, actualService);
         }
 
         [Test]
