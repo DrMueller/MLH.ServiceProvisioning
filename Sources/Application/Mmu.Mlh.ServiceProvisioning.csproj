@@ -20,7 +20,6 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
-    <PackageReference Include="Lamar" Version="8.0.1" />
     <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="2.4.13" />
   </ItemGroup>
 
