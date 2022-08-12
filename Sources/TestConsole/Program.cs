@@ -1,13 +1,15 @@
 ﻿using System;
+using JetBrains.Annotations;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services;
 using Mmu.Mlh.ServiceProvisioning.TestConsole.Services;
 
 namespace Mmu.Mlh.ServiceProvisioning.TestConsole
 {
+    [PublicAPI]
     internal class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
             var containerConfig = new ContainerConfiguration(
                 typeof(Program).Assembly,

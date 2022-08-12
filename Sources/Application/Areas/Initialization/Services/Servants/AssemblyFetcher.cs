@@ -4,7 +4,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using Lamar;
 using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models;
 
 namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services.Servants
@@ -41,15 +40,6 @@ namespace Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services.Servants
             foreach (var assemblyName in relevantAssemblies)
             {
                 var loadedAssembly = Assembly.Load(assemblyName);
-
-                var tra = new Container(cfg =>
-                {
-                    cfg.Scan(scanner =>
-                    {
-                        scanner.Assembly(loadedAssembly);
-                        scanner.LookForRegistries();
-                    });
-                });
 
                 assemblies.Add(loadedAssembly);
                 AppendAssembliesByAssemblyReferences(containerConfig, loadedAssembly, assemblies);
