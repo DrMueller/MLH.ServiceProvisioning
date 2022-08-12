@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
-    <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="2.4.13" />
+    <PackageReference Include="Mmu.Mlh.LanguageExtensions" Version="2.4.14" />
   </ItemGroup>
 
   <ItemGroup>
