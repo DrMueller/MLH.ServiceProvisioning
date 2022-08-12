@@ -1,4 +1,7 @@
 ﻿using System;
+using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Models;
+using Mmu.Mlh.ServiceProvisioning.Areas.Initialization.Services;
+using Mmu.Mlh.ServiceProvisioning.TestConsole.Services;
 
 namespace Mmu.Mlh.ServiceProvisioning.TestConsole
 {
@@ -6,7 +9,16 @@ namespace Mmu.Mlh.ServiceProvisioning.TestConsole
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var containerConfig = new ContainerConfiguration(
+                typeof(Program).Assembly,
+                "Mmu.Mlh",
+                true);
+
+            var container = ServiceProvisioningInitializer.CreateContainer(containerConfig);
+            var testservice = container.GetInstance<ITestService>();
+            testservice.DoSomething();
+
+            Console.ReadKey();
         }
     }
 }
